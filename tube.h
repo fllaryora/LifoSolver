@@ -19,6 +19,8 @@ The Tube class represents a tube of glass with the balls inside or empty.
 #define PURPLE 9
 #define WHITE 10
 
+#define COLOURS_LENGTH 11
+
 #define FIRST_OBJECT_INDEX 0
 /**
  * Positions in the array
@@ -45,6 +47,8 @@ public:
    bool validPushTube(int newBall);
    
    bool isTubeResolved();
+   
+   void fillCollorArray(int* colorArray, int length);
    
 private:
    int testTubeSize;

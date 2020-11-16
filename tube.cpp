@@ -150,3 +150,19 @@ bool Tube::validPushTube(int newBall) {
    }
    return false;
  }
+
+void Tube::fillCollorArray(int* colorArray, int length) {
+	//programming errors cases
+    assert(testTubeSize >= 1);
+    
+	for( int objectIndex = FIRST_OBJECT_INDEX; objectIndex < testTubeSize;objectIndex++) {
+		if(EMPTY == contain[objectIndex]){
+			break;
+		}
+		int colorIndex = contain[objectIndex];
+		assert(length > colorIndex );
+		colorArray[colorIndex]++;
+	}
+	
+	return;
+}

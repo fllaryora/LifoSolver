@@ -21,6 +21,9 @@ int main() {
    int popedBall = EMPTY;
    int tubeColor = EMPTY;
    
+   int* colorArray = new int [COLOURS_LENGTH];
+   std::memset(colorArray, 0, sizeof(int) * COLOURS_LENGTH);
+   
    Tube* tubeArray = new Tube [testTubeAmount];
    tubeArray[0].init(testTubeSize);
    tubeArray[1].init(testTubeSize);
@@ -48,6 +51,15 @@ int main() {
       //printf("===Tube colour is the colour on the top === \n");
       tubeColor = tubeArray[0].getTubeColor();
       assert(balls[times] == tubeColor);
+   }
+   
+   tubeArray[0].fillCollorArray( colorArray, COLOURS_LENGTH); 
+   for(int colorIndex = 0; colorIndex < COLOURS_LENGTH; colorIndex++){
+	   if( RED == colorIndex ||  BLUE== colorIndex || WHITE== colorIndex || YELLOW == colorIndex ) {
+		   assert(1 == colorArray[colorIndex]);
+	   } else {
+		   assert(0 == colorArray[colorIndex]);
+	   }
    }
    
    printf("===Tube should be full at this moment=== \n");
@@ -107,6 +119,16 @@ int main() {
    printf("===Full Tube with the same color should be marked as resolved === \n");
    isResolved = tubeArray[1].isTubeResolved();
    assert(isResolved);
+   
+   std::memset(colorArray, 0, sizeof(int) * COLOURS_LENGTH);
+   tubeArray[1].fillCollorArray( colorArray, COLOURS_LENGTH); 
+   for(int colorIndex = 0; colorIndex < COLOURS_LENGTH; colorIndex++){
+	   if( RED == colorIndex ) {
+		   assert(4 == colorArray[colorIndex]);
+	   } else {
+		   assert(0 == colorArray[colorIndex]);
+	   }
+   }
    
    delete [] tubeArray; //invoke the destructor !!
    return 0; 
